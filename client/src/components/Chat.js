@@ -18,23 +18,21 @@ const Chat = () => {
  const users = ["Alan", "Bob", "Carol", "Dean", "Elin"];
 
  useEffect(() => {
-  // Define the event handler function for receiving messages
+
   const handleChatMessage = (msg) => {
      setMessages((prevMessages) => [...prevMessages, msg]);
   };
- 
-  // Register the event listener for receiving messages
+
   socket.on('chat message', handleChatMessage);
- 
-  // Define the event handler function for receiving confirmation
+
   const handleMessageSent = (msg) => {
     setMessages(() => [msg]);
   };
  
-  // Register the event listener for receiving confirmation
+
   socket.on('message sent', handleMessageSent);
  
-  // Cleanup function to remove the event listeners when the component unmounts
+ 
   return () => {
      socket.off('chat message', handleChatMessage);
     socket.off('message sent', handleMessageSent);
@@ -46,7 +44,7 @@ const handleChange = (e) => {
     const inputMessage = e.target.value;
     setInput(inputMessage);
 
-    // Check if "@" is typed
+
     const atIndex = inputMessage.lastIndexOf('@');
     if (atIndex !== -1 && atIndex === inputMessage.length - 1) {
       setShowModal(true);
@@ -73,17 +71,16 @@ const handleChange = (e) => {
     socket.emit('chat message', input);
     var currentDate = new Date();
 
-// Extract hours, minutes, and seconds
+
 var hours = currentDate.getHours();
 var minutes = currentDate.getMinutes();
 var seconds = currentDate.getSeconds();
 
-// Format the time components (add leading zeros if needed)
 hours = (hours < 10 ? "0" : "") + hours;
 minutes = (minutes < 10 ? "0" : "") + minutes;
 seconds = (seconds < 10 ? "0" : "") + seconds;
 
-// Display the time
+
 var currentTime = hours + ":" + minutes + ":" + seconds;
 
 console.log(currentTime);
@@ -100,16 +97,6 @@ console.log(currentTime);
 
  const [showPicker, setShowPicker] = useState(false);
 
-//  const fetchUsers = (query, callback) => {
-//   if (!query) return;
-
-//   setTimeout(() => {
-//     const filteredUsers = users.filter((user) =>
-//       user.display.toLowerCase().includes(query)
-//     );
-//     callback(filteredUsers);
-//   }, 2000);
-// };
 
 const handleUserClick = (user) => {
   const updatedMessage =
