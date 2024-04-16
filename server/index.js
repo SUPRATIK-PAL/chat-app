@@ -6,7 +6,7 @@ import { Server } from 'socket.io';
 const app = express();
 const server = http.createServer(app);
 
-// Configure Socket.IO to allow CORS from your client's origin
+
 const io = new Server(server, {
     cors: {
         origin: '*',
